@@ -1,0 +1,83 @@
+﻿<Window x:Class="WeChat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeChat"
+        xmlns:properties="clr-namespace:WeChat.Properties"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800"  Loaded="Window_Loaded" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:VisiableConvert x:Key="visiableConvert"></local:VisiableConvert>
+        <local:MessageCountConvert x:Key="msgConvert"></local:MessageCountConvert>
+        <local:ContentToForegroundConvert x:Key="contentToForegroundConvert"></local:ContentToForegroundConvert>
+        <Style x:Key="linkLable" TargetType="Label">
+            <Setter Property="Foreground" Value="Gray"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Blue"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="0 3"></Setter>
+        </Style>
+        <DataTemplate x:Key="listboxitem">
+            <CheckBox MaxHeight="20" IsChecked="{Binding Path=IsCheck, Mode=TwoWay}" Visibility="{Binding Path=Visiable, Mode=TwoWay, Converter={StaticResource visiableConvert}}">
+                <DockPanel>
+                    <Image Margin="0 1 0 3" Source="{Binding Path=BitMapImage}"></Image>
+                    <Label Padding="0" Content="{Binding Path=DisplayName}" Foreground="{Binding Path=FontColor}"></Label>
+                    <Button Background="{x:Null}" BorderThickness="0" Padding="0" Margin="3 0 0 7" HorizontalContentAlignment="Left" Content="{Binding Path=Messages, Mode=OneWay,  Converter={StaticResource msgConvert}}" Focusable="False" Foreground="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content,Mode=OneWay, Converter={StaticResource contentToForegroundConvert}}" PreviewMouseLeftButtonUp="Button_PreviewMouseLeftButtonUp"></Button>
+                </DockPanel>
+            </CheckBox>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid x:Name="loginInfo" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="500"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="codeImage" Width="300" Height="300" Stretch="Fill"></Image>
+            <Rectangle Grid.Row="1" Fill="Gray" Margin="10 0"></Rectangle>
+            <Label x:Name="loginLable" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" Foreground="Gray"></Label>
+        </Grid>
+        <Grid x:Name="setPanel" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="310"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ListBox x:Name="recentList" Grid.Row="1" Margin="20" ScrollViewer.CanContentScroll="True" ItemTemplate="{StaticResource listboxitem}">
+            </ListBox>
+            <TextBox x:Name="searchTb" Grid.Row="2" Height="20" Margin="20,0,171.2,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" TextWrapping="NoWrap" BorderBrush="Gray" KeyUp="searchTb_KeyUp"></TextBox>
+            <CheckBox x:Name="allSelect" Grid.Row="2" Height="20" Margin="305,0,20.2,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderBrush="Gray" Checked="allSelect_Checked" Unchecked="allSelect_Unchecked">全部选中</CheckBox>
+            <Button x:Name="selectOther" Grid.Row="2" Height="20" Margin="233,0,97.2,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Gray" Click="selectOther_Click">反选</Button>
+            <ListBox x:Name="allList" Grid.Row="2" Margin="20 30 20 20" ScrollViewer.CanContentScroll="True" ItemTemplate="{StaticResource listboxitem}">
+
+            </ListBox>
+            <Rectangle Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Fill="Gray" Margin="0 0 0 20" ></Rectangle>
+            <Border x:Name="ruleList" Grid.Column="2" Grid.Row="1" Padding="5" Margin="20" BorderThickness="1" ScrollViewer.CanContentScroll="True" BorderBrush="#FFABADB3">
+                <StackPanel x:Name="radios">
+                    <RadioButton GroupName="rule">
+                        <Label Style="{StaticResource linkLable}" Padding="0" >Default</Label>
+                    </RadioButton>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="print" IsReadOnly="True" TextWrapping="WrapWithOverflow" Foreground="Gray" Grid.Column="2" Grid.Row="2" Margin="20" Padding="10" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible"></TextBox>
+            <Button x:Name="startBtn" Grid.Row="3" Grid.ColumnSpan="3" Content="start" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="175"/>
+            <Label Content="Rule List" Grid.Column="2" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+            <Label Content="Friend List" Grid.Column="0" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+            <CheckBox x:Name="isOpenMsgMusic" Grid.Row="2" Height="15"  VerticalAlignment="Top" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" BorderBrush="Gray" Content="开启消息铃声通知" Grid.Column="2" Margin="250,0,25,0"/>
+            <MediaElement x:Name="playBox" Visibility="Hidden" LoadedBehavior="Manual" UnloadedBehavior="Stop" Volume="1"></MediaElement>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,42 @@
+﻿<Window x:Class="WxBot.CheckRegWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WxBot"
+        mc:Ignorable="d"
+        Title="CheckReg" Height="125" Width="330" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Border BorderThickness="1" BorderBrush="Black" Height="auto" Width="auto">
+        <Grid MouseLeftButtonDown="CheckReg_MouseLeftButtonDown">
+            <Grid.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition Width="230"></ColumnDefinition>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="License" HorizontalAlignment="Center" FontSize="16" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"></Label>
+        <Label Content="机器码：" HorizontalAlignment="Right" FontSize="16" Grid.Row="1" Grid.Column="0"></Label>
+        <Label Content="注册码：" HorizontalAlignment="Right" FontSize="16" Grid.Row="2" Grid.Column="0"></Label>
+        <TextBox Name="code" Height="20" Grid.Row="1" Grid.Column="1" IsReadOnly="True"></TextBox>
+        <TextBox Name="regCode" Height="20" Grid.Row="2" Grid.Column="1" IsEnabled="False"></TextBox>
+        <Label Name="msg" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Hidden"></Label>
+        <Button Name="regBtn" Content="注册" HorizontalAlignment="Right" Width="45" Height="22" Grid.Row="3" Grid.Column="1"  Click="RegBtn_Click" Visibility="Hidden"></Button>
+            <Button Name="exitBtn" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="22" Height="18" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Click="exitBtn_Click" FontWeight="Bold" Margin="0,2,5,0">
+                <Button.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+                </Button.Background>
+            </Button>
+
+    </Grid>
+    </Border>
+
+</Window>
