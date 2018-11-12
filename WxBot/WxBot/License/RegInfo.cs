@@ -78,7 +78,7 @@ namespace WxBot.License
                 int day = int.Parse(ExtractNum(ref registerCode, 0, 1, 2, 5, 6, 7, 3, 8, 9, 4));
                 int month = int.Parse(ExtractNum(ref registerCode, 0, 6, 9, 7, 3, 8, 4, 1, 2, 5));
                 int year = int.Parse(ExtractNum(ref registerCode, 0, 8, 4, 6, 7, 1, 3, 2, 5, 9));
-                day -= 32;
+                day -= 17;
                 month -=14;
                 year -= 46;
                 overTime = new DateTime(int.Parse("20" + year),month, day);
@@ -118,7 +118,7 @@ namespace WxBot.License
                 int day = int.Parse(ExtractNum(ref registerCode, 0, 1, 2, 5, 6, 7, 3, 8, 9, 4));
                 int month = int.Parse(ExtractNum(ref registerCode, 0, 6, 9, 7, 3, 8, 4, 1, 2, 5));
                 int year = int.Parse(ExtractNum(ref registerCode, 0, 8, 4, 6, 7, 1, 3, 2, 5, 9));
-                day -= 32;
+                day -= 17;
                 month -= 14;
                 year -= 46;
                 var aa = Convert.ToDateTime(endTime);

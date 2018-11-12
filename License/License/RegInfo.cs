@@ -46,7 +46,7 @@ namespace License
         {
             int year = int.Parse(overTime.Year.ToString().Substring(2)) + 46;
             int month = overTime.Month + 14;
-            int day = overTime.Day + 32;
+            int day = overTime.Day + 17;
             int section = machineCode.Length / 4;
             string reg = "";
             int n = 1119;
@@ -83,7 +83,7 @@ namespace License
                 int day = int.Parse(ExtractNum(ref registerCode, 0, 1, 2, 5, 6, 7, 3, 8, 9, 4));
                 int month = int.Parse(ExtractNum(ref registerCode, 0, 6, 9, 7, 3, 8, 4, 1, 2, 5));
                 int year = int.Parse(ExtractNum(ref registerCode, 0, 8, 4, 6, 7, 1, 3, 2, 5, 9));
-                day -= 32;
+                day -= 17;
                 month -= 14;
                 year -= 46;
                 overTime = new DateTime(year, month, day);
