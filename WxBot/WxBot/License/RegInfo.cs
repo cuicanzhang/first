@@ -42,7 +42,7 @@ namespace WxBot.License
         {
             int year = int.Parse(overTime.Year.ToString().Substring(2)) + 46;
             int month = overTime.Month + 14;
-            int day = overTime.Day + 32;
+            int day = overTime.Day + 17;
             int section = machineCode.Length / 4;
             string reg = "";
             int n = 1119;
