@@ -40,9 +40,9 @@ namespace WxBot.License
         /// <returns></returns>
         public static string CreateRegisterCode(string machineCode, DateTime overTime)
         {
-            int year = int.Parse(overTime.Year.ToString().Substring(2)) + 46;
-            int month = overTime.Month + 14;
-            int day = overTime.Day + 17;
+            int year = int.Parse(overTime.Year.ToString().Substring(2)) + 9;
+            int month = overTime.Month + 9;
+            int day = overTime.Day + 9;
             int section = machineCode.Length / 4;
             string reg = "";
             int n = 1119;
@@ -78,9 +78,9 @@ namespace WxBot.License
                 int day = int.Parse(ExtractNum(ref registerCode, 0, 1, 2, 5, 6, 7, 3, 8, 9, 4));
                 int month = int.Parse(ExtractNum(ref registerCode, 0, 6, 9, 7, 3, 8, 4, 1, 2, 5));
                 int year = int.Parse(ExtractNum(ref registerCode, 0, 8, 4, 6, 7, 1, 3, 2, 5, 9));
-                day -= 17;
-                month -=14;
-                year -= 46;
+                day -= 9;
+                month -=9;
+                year -= 9;
                 overTime = new DateTime(int.Parse("20" + year),month, day);
 
 
@@ -118,9 +118,9 @@ namespace WxBot.License
                 int day = int.Parse(ExtractNum(ref registerCode, 0, 1, 2, 5, 6, 7, 3, 8, 9, 4));
                 int month = int.Parse(ExtractNum(ref registerCode, 0, 6, 9, 7, 3, 8, 4, 1, 2, 5));
                 int year = int.Parse(ExtractNum(ref registerCode, 0, 8, 4, 6, 7, 1, 3, 2, 5, 9));
-                day -= 17;
-                month -= 14;
-                year -= 46;
+                day -= 9;
+                month -= 9;
+                year -= 9;
                 var aa = Convert.ToDateTime(endTime);
                 var bb = DateTime.Now;
                 double TotalMinutes = (Convert.ToDateTime(endTime) - DateTime.Now).TotalMinutes;
